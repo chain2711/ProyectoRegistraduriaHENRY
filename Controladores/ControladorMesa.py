@@ -1,5 +1,8 @@
 from Repositorios.RepositorioMesa import RepositorioMesa
+from Repositorios.RepositorioCandidato import RepositorioCandidato
 from Modelos.Mesa import Mesa
+from Modelos.Candidato import Candidato
+
 class ControladorMesa():
     def __init__(self):
         print(" Controlador Mesa Funcionando OK")
@@ -29,3 +32,12 @@ class ControladorMesa():
     def delete(self, id):
         print("Elimiando Mesa con id ", id)
         return self.repositorioMesa.delete(id)
+
+
+    def asignarCandidato(self, id, idCandidato):
+        mesaActual = Mesa(self.repositorioMesa.findById(id))
+        candidatoActual = Candidato(self.repositorioCandidato.findById(idCandidato))
+        mesaActual.candidato = candidatoActual
+        return self.repositorioMesa.save(mesaActual)
+
+

@@ -4,32 +4,47 @@ from flask import request
 from flask_cors import CORS
 import json
 from waitress import serve
+from Controladores.ControladorMesa import ControladorMesa
+app = Flask(__name__)
+cors = CORS(app)
+from Repositorios.RepositorioPartido import RepositorioPartido
+from Modelos.Partido import Partido
 
-import pymongo
-import certifi
+class ControladorPartido():
+    def __init__(self):
+        print("Creando ControladorPartido")
+        self.repositorioPartido = RepositorioPartido()
+        """self.repositorioCandidato = RepositorioCandidato()"""
 
-ca = certifi.where()
-client = pymongo.MongoClient("mongodb+srv://equipo1:56789@cluster0.j1sapjk.mongodb.net/bd-votacion-registraduria?retryWrites=true&w=majority",tlsCAFile=ca)
+    def index(self):
+        print("Listar todas los partidos")
+        return self.repositorioPartido.findAll()
 
-db = client.test
-print("hola mundo¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡")
+    def create(self,infoPartido):
+        print("Crear un partido")
+        nuevoPartido = Partido(infoPartido)
+        return self.repositorioPartido.save(nuevoPartido)
 
-baseDatos = client["bd-votacion-registraduria"]
-print(baseDatos.list_collection_names())
+    def show(self,id):
+        print("Mostrando partido con id ", id)
+        elPartido = Partido(self.repositorioPartido.findById(id))
+        return elPartido.__dict__
 
+    def update(self, id, infoPartido):
+        print("Actualizando partido con id ", id)
+        partidoActual = Partido(self.repositorioPartido.findById(id))
+        partidoActual.nombre = infoPartido["nombre"]
+        partidoActual.lema = infoPartido["lema"]
+        return self.repositorioPartido.save(partidoActual)
 
-@app.route("/",methods=['GET'])
-def test():
-    json = {}
-    json["message"]="Server running ..."
-    return jsonify(json)
+    def delete(self, id):
+        print("Elimiando partido con id ", id)
+        return self.repositorioPartido.delete(id)
 
-def loadFileConfig():
-    with open('config.json') as f:
-        data = json.load(f)
-    return data
-
-if __name__=='__main__':
-    dataConfig = loadFileConfig()
-    print("Server running : "+"http://"+dataConfig["url-backend"]+":"+str(dataConfig["port"]))
-    serve(app,host=dataConfig["url-backend"],port=dataConfig["port"])
+    """
+    def asignarCandidato(self,id,idCandidato):
+        partidoActual = Partido(self.repositorioPartido.findById(id))
+        CandidatoActual = Candidato(self.repositorioCandidato.findById(idCandidato))
+        partidoActual.candidato = CandidatoActual
+        return self.repositorioPartido.save(partidoActual)
+    """

@@ -1,0 +1,11 @@
+Controladores/__pycache__/
+Controladores/__pycache__/*
+Modelos/__pycache__/
+Modelos/__pycache__/*
+Repositorios/__pycache__/
+Repositorios/__pycache__/*
+*.pyc
+.idea/
+.idea/*
+venv/
+venv/*

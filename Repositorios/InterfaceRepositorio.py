@@ -115,6 +115,38 @@ class InterfaceRepositorio(Generic[T]):
             value["_id"] = value["_id"].__str__()
             newList.append(value)
         return newList
+
+    def transformObjectIds(self, x):
+        for attribute in x.keys():
+            if isinstance(x[attribute], ObjectId):
+                x[attribute] = x[attribute].__str__()
+            elif isinstance(x[attribute], list):
+                x[attribute] = self.formatList(x[attribute])
+            elif isinstance(x[attribute], dict):
+                x[attribute] = self.transformObjectIds(x[attribute])
+        return x
+
+    def formatList(self, x):
+        newList = []
+        for item in x:
+            if isinstance(item, ObjectId):
+                newList.append(item.__str__())
+        if len(newList) == 0:
+            newList = x
+        return newList
+
+    def transformRefs(self, item):
+        theDict = item.__dict__
+        keys = list(theDict.keys())
+        for k in keys:
+            if theDict[k].__str__().count("object") == 1:
+                newObject = self.ObjectToDBRef(getattr(item, k))
+                setattr(item, k, newObject)
+        return item
+
+    def ObjectToDBRef(self, item: T):
+        nameCollection = item.__class__.__name__.lower()
+        return DBRef(nameCollection, ObjectId(item._id))
     def transformObjectIds(self, x):
         for attribute in x.keys():
             if isinstance(x[attribute], ObjectId):

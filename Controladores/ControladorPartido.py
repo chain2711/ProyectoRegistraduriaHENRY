@@ -3,6 +3,7 @@ from Repositorios.RepositorioCandidato import RepositorioCandidato
 from Modelos.Partido import Partido
 from Modelos.Candidato import Candidato
 
+
 class ControladorPartido():
     def __init__(self):
         print("Creando Controlador Partido")

@@ -1,6 +1,7 @@
 from Modelos.Resultado import Resultado
 from Modelos.Candidato import Candidato
 from Modelos.Mesa import Mesa
+
 from Repositorios.RepositorioResultado import RepositorioResultado
 from Repositorios.RepositorioCandidato import RepositorioCandidato
 from Repositorios.RepositorioMesa import RepositorioMesa

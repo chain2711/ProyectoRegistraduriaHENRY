@@ -5,7 +5,7 @@ from Modelos.Partido import Partido
 
 
 class ControladorCandidato():
-    def __init__(self):    #este es el constructor del controlador candidato
+    def __init__(self):    #este es el constructor del controlador
         print("Creando Controlador Candidato")
         self.repositorioCandidato = RepositorioCandidato()
         self.repositorioPartido = RepositorioPartido()

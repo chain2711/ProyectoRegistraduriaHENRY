@@ -6,6 +6,6 @@ Repositorios/__pycache__/
 Repositorios/__pycache__/*
 *.pyc
 .idea/
-.idea/
+.idea/*
 venv/
 venv/*

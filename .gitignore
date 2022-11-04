@@ -4,3 +4,4 @@ Modelos/__pycache__/
 Modelos/__pycache__/*
 Repositorios/__pycache__/
 Repositorios/__pycache__/*
+*.pyc

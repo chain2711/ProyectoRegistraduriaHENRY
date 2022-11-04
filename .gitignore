@@ -5,3 +5,7 @@ Modelos/__pycache__/*
 Repositorios/__pycache__/
 Repositorios/__pycache__/*
 *.pyc
+.idea/
+.idea/
+venv/
+venv/*

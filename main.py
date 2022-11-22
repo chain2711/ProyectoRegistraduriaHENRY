@@ -126,9 +126,9 @@ def asignarPartidoACandidato(id,idPartido):
    json=miControladorCandidato.asignarPartido(id,idPartido)
    return jsonify(json)
 
-@app.route("/partidos/string:id>/candidatos/<string:idCandidato>",methods=['PUT'])
-def asignarCandidatoAPartido(id,idCandidato):
-   json=miControladorPartido.asignarCandidato(id,idCandidato)
+@app.route("/candidatos/string:id>/partidos/<string:idPartido>",methods=['PUT'])
+def asignarPartidoACandidato(id,idPartido):
+   json=miControladorCandidato.asignarpartido(id,idPartido)
    return jsonify(json)
 
 @app.route("/mesas/string:id>/candidatos/<string:idCandidato>",methods=['PUT'])

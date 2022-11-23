@@ -13,7 +13,6 @@ class ControladorCandidato():
     def index(self):     #simula la información de forma de diccionario
         print("Listar todos los candidatos")
         return self.repositorioCandidato.findAll()
-
     def create(self, infoCandidato):
         print("Crear un candidato")
         nuevoCandidato = Candidato(infoCandidato)

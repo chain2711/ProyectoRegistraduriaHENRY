@@ -30,7 +30,6 @@ class ControladorPartido():
         partidodActual.nombre = infoPartido["nombre"]
         partidodActual.lema = infoPartido["lema"]
         return self.repositorioPartido.save(partidodActual)
-
     def delete(self, id):
         print("Elimiando Partido con id ", id)
         return self.repositorioPartido.delete(id)

@@ -18,7 +18,6 @@ class ControladorCandidato():
         print("Crear un candidato")
         nuevoCandidato = Candidato(infoCandidato)
         return self.repositorioCandidato.save(nuevoCandidato)
-
     def show(self, id):     #id es el parámetro de entrada y retorna un diccionario con la info
         print("Mostrando un candidato con id ", id)
         elCandidato = Candidato(self.repositorioCandidato.findById(id))

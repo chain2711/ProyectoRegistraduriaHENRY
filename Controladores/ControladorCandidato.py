@@ -23,7 +23,6 @@ class ControladorCandidato():
         print("Mostrando un candidato con id ", id)
         elCandidato = Candidato(self.repositorioCandidato.findById(id))
         return elCandidato.__dict__
-
     def update(self, id, infoCandidato):   #aquí de actualiza la info del candidato
         print("Actualizando candidato con id ", id)
         candidatoActual = Candidato(self.repositorioCandidato.findById(id))

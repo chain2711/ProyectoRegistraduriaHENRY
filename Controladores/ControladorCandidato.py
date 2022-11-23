@@ -10,8 +10,6 @@ class ControladorCandidato():
         self.repositorioCandidato = RepositorioCandidato()
         self.repositorioPartido = RepositorioPartido()
 
-
-
     def index(self):     #simula la información de forma de diccionario
         print("Listar todos los candidatos")
         return self.repositorioCandidato.findAll()
